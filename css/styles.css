@@ -908,3 +908,58 @@ img.about-image-placeholder {
         grid-template-columns: 1fr;
     }
 }
+
+/* ----------------------
+   FEEDBACK BUTTON
+   ---------------------- */
+
+.feedback-btn {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    background: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    text-decoration: none;
+}
+
+.feedback-btn:hover {
+    background: #a8624a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(198, 123, 92, 0.4);
+    color: white;
+}
+
+.feedback-btn:active {
+    transform: translateY(0);
+}
+
+.feedback-btn .feedback-icon {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 480px) {
+    .feedback-btn {
+        padding: var(--space-sm);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        justify-content: center;
+    }
+
+    .feedback-btn .feedback-text {
+        display: none;
+    }
+}
