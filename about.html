@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Brianna and her passion for creating beautiful, delicious charcuterie boards.">
+    <title>About | Brianna Cooks</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-bg-alt) 100%);
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .about-hero .highlight {
+            color: var(--color-secondary);
+        }
+
+        .about-hero-subtitle {
+            color: var(--color-text-muted);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .about-section:nth-child(even) {
+            direction: rtl;
+        }
+
+        .about-section:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .about-image {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-primary-light) 100%);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .about-photo {
+            object-fit: cover;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-text h2 {
+            font-size: 1.75rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .about-text p {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .value-card {
+            text-align: center;
+            padding: var(--space-xl);
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-lg);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .value-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .value-description {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section h2 {
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-section p {
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-xl);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-section:nth-child(even) {
+                direction: ltr;
+            }
+
+            .about-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🧀</span>
+                <span>Brianna Cooks</span>
+            </a>
+
+            <nav class="main-nav">
+                <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="about.html" class="nav-link active">About</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="order.html" class="nav-link">Order</a></li>
+                </ul>
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon-light">☀️</span>
+                    <span class="theme-icon-dark">🌙</span>
+                </button>
+
+                <button class="cart-btn" aria-label="View cart" onclick="window.location.href='order.html'">
+                    🛒
+                    <span class="cart-count" style="display: none;">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero -->
+        <section class="about-hero">
+            <h1>Meet <span class="highlight">Brianna</span></h1>
+            <p class="about-hero-subtitle">
+                The story behind the boards - a passion for bringing people together through beautiful, delicious food.
+            </p>
+        </section>
+
+        <!-- About Content -->
+        <div class="about-content">
+            <!-- Story Section -->
+            <section class="about-section">
+                <img src="images/brianna.jpeg" alt="Brianna" class="about-image about-photo">
+                <div class="about-text">
+                    <h2>My Story</h2>
+                    <p>
+                        Hi, I'm Brianna! My love for charcuterie started with family gatherings where
+                        the appetizer table was always the heart of the party. I discovered that a
+                        beautifully arranged board isn't just food - it's a conversation starter,
+                        a work of art, and a way to show love.
+                    </p>
+                    <p>
+                        What began as a hobby for hosting friends and family has grown into a passion
+                        for crafting boards that make every occasion special. Each board I create is
+                        thoughtfully curated with premium ingredients and arranged with care.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Philosophy Section -->
+            <section class="about-section">
+                <div class="about-image">✨</div>
+                <div class="about-text">
+                    <h2>My Philosophy</h2>
+                    <p>
+                        I believe that great food should be accessible, beautiful, and bring joy.
+                        That's why I focus on using quality ingredients that taste as good as they look,
+                        while keeping my boards affordable for everyday celebrations.
+                    </p>
+                    <p>
+                        Every board tells a story - from the selection of artisan cheeses to the
+                        arrangement of seasonal fruits and the drizzle of local honey. I want your
+                        board to be the centerpiece that gets everyone talking.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Values -->
+            <section>
+                <h2 class="text-center">What I Value</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🧀</div>
+                        <h3 class="value-title">Quality Ingredients</h3>
+                        <p class="value-description">
+                            Premium cheeses, artisan meats, and fresh accompaniments
+                            sourced from trusted suppliers.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🎨</div>
+                        <h3 class="value-title">Artistic Presentation</h3>
+                        <p class="value-description">
+                            Every board is arranged with care, balancing colors,
+                            textures, and visual appeal.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">💕</div>
+                        <h3 class="value-title">Made with Love</h3>
+                        <p class="value-description">
+                            Each board is crafted by hand with attention to detail
+                            and genuine care for your celebration.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Order?</h2>
+            <p>Let me create something special for your next gathering.</p>
+            <a href="menu.html" class="btn btn-primary btn-lg">Browse Our Menu</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">🧀 Brianna Cooks</span>
+                <p class="footer-tagline">Handcrafted charcuterie boards for every occasion</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="order.html">Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li>Email: hello@briannacooks.com</li>
+                    <li>Instagram: @briannacooks</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Brianna Cooks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/menu-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
