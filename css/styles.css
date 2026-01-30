@@ -916,7 +916,7 @@ img.about-image-placeholder {
 .feedback-btn {
     position: fixed;
     bottom: var(--space-lg);
-    right: var(--space-lg);
+    left: var(--space-lg);
     background: var(--color-secondary);
     color: white;
     border: none;
