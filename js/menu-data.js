@@ -150,7 +150,7 @@ const MENU_PRODUCTS = [
             'Flavors: Vanilla, Chocolate, Strawberry'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/treats/cake-pops3.jpg',
+        imageUrl: 'images/treats/cake-pops-pink.jpg',
         customSizes: [
             { id: 'half-dozen', name: '1/2 Dozen (6)', serves: '3-6', basePrice: 30.00 },
             { id: 'dozen', name: 'Dozen (12)', serves: '6-12', basePrice: 40.00 }
