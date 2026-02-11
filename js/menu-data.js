@@ -134,7 +134,7 @@ const MENU_PRODUCTS = [
             'Flavors: Salted Caramel, Oreo, Sugar Cookie, Chocolate, Vanilla'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/treats/cake-pops3.jpg',
+        imageUrl: 'images/treats/cake-pops4.jpg',
         customSizes: [
             { id: 'dozen', name: 'Dozen (12)', serves: '6-8', basePrice: 30.00 }
         ],
@@ -150,7 +150,7 @@ const MENU_PRODUCTS = [
             'Flavors: Vanilla, Chocolate, Strawberry'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/treats/cake-pops1.jpg',
+        imageUrl: 'images/treats/cake-pops3.jpg',
         customSizes: [
             { id: 'half-dozen', name: '1/2 Dozen (6)', serves: '3-6', basePrice: 30.00 },
             { id: 'dozen', name: 'Dozen (12)', serves: '6-12', basePrice: 40.00 }
@@ -168,7 +168,7 @@ const MENU_PRODUCTS = [
             'Custom decorations available'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/treats/cake-pops4.jpg',
+        imageUrl: 'images/treats/cake-pops2.jpg',
         customSizes: [
             { id: 'half-dozen', name: '1/2 Dozen (6)', serves: '3-6', basePrice: 20.00 },
             { id: 'dozen', name: 'Dozen (12)', serves: '6-12', basePrice: 30.00 }
@@ -185,7 +185,7 @@ const MENU_PRODUCTS = [
             '5" serves 5-8 | 6" serves 10-12'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/treats/cake-pops2.jpg',
+        imageUrl: 'images/treats/cake-pops1.jpg',
         customSizes: [
             { id: '5-circle', name: '5" Circle (2 Layer)', serves: '5-8', basePrice: 40.00 },
             { id: '5-circle-cupcakes', name: '5" Circle + 2 Cupcakes', serves: '5-8', basePrice: 45.00 },
