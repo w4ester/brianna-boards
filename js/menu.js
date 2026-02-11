@@ -1,5 +1,5 @@
 /**
- * Brianna Cooks - Menu Page Controller
+ * Nani's Treats & Boards - Menu Page Controller
  * Handles product display, filtering, cart panel, and ordering
  */
 
@@ -99,17 +99,15 @@ const MenuUI = {
         card.className = 'product-card';
         card.id = 'product-' + product.id;
 
-        const defaultSize = MenuData.getSizes()[0];
+        const sizes = MenuData.getProductSizes(product);
+        const defaultSize = sizes[0];
+
         const categoryIcons = {
             'classic': '🧀🍇',
             'date-night': '💕🍫',
             'girls-night': '🥂✨',
-            'party': '🎉🧀',
-            'corporate': '💼🍷',
-            'italian': '🇮🇹🧀',
-            'mediterranean': '🫒🥙',
-            'brunch': '🥐☕',
-            'dessert': '🍫🍓'
+            'boards': '🧀🍇',
+            'treats': '🍰✨'
         };
 
         // Main section (clickable)
@@ -212,13 +210,13 @@ const MenuUI = {
         price.textContent = MenuData.formatPrice(defaultSize.basePrice);
         const priceLabel = document.createElement('span');
         priceLabel.className = 'product-price-label';
-        priceLabel.textContent = ' from';
+        priceLabel.textContent = sizes.length > 1 ? ' from' : '';
         priceSection.appendChild(price);
         priceSection.appendChild(priceLabel);
 
         const hint = document.createElement('div');
         hint.className = 'expand-hint';
-        hint.textContent = 'Click to customize →';
+        hint.textContent = 'Click to customize \u2192';
 
         footer.appendChild(priceSection);
         footer.appendChild(hint);
@@ -238,20 +236,23 @@ const MenuUI = {
         options.className = 'product-options';
         options.id = 'options-' + product.id;
 
+        const sizes = MenuData.getProductSizes(product);
+        const hasAddOns = MenuData.productHasAddOns(product);
+
         // Size selector
         const sizeSection = document.createElement('div');
         sizeSection.className = 'option-section';
 
         const sizeLabel = document.createElement('span');
         sizeLabel.className = 'option-label';
-        sizeLabel.textContent = 'Select Size:';
+        sizeLabel.textContent = product.type === 'treat' ? 'Select Option:' : 'Select Size:';
         sizeSection.appendChild(sizeLabel);
 
         const sizeOptions = document.createElement('div');
         sizeOptions.className = 'size-options';
         sizeOptions.id = 'sizes-' + product.id;
 
-        MenuData.getSizes().forEach((size, index) => {
+        sizes.forEach((size, index) => {
             const sizeBtn = document.createElement('button');
             sizeBtn.className = 'size-option' + (index === 0 ? ' selected' : '');
             sizeBtn.setAttribute('data-size', size.id);
@@ -284,60 +285,62 @@ const MenuUI = {
         sizeSection.appendChild(sizeOptions);
         options.appendChild(sizeSection);
 
-        // Add-ons section
-        const addonsSection = document.createElement('div');
-        addonsSection.className = 'option-section';
+        // Add-ons section (boards only)
+        if (hasAddOns) {
+            const addonsSection = document.createElement('div');
+            addonsSection.className = 'option-section';
 
-        const addonsLabel = document.createElement('span');
-        addonsLabel.className = 'option-label';
-        addonsLabel.textContent = 'Add Extras (optional):';
-        addonsSection.appendChild(addonsLabel);
+            const addonsLabel = document.createElement('span');
+            addonsLabel.className = 'option-label';
+            addonsLabel.textContent = 'Add Extras (optional):';
+            addonsSection.appendChild(addonsLabel);
 
-        const addonsGrid = document.createElement('div');
-        addonsGrid.className = 'addons-grid';
-        addonsGrid.id = 'addons-' + product.id;
+            const addonsGrid = document.createElement('div');
+            addonsGrid.className = 'addons-grid';
+            addonsGrid.id = 'addons-' + product.id;
 
-        MenuData.getAddOns().forEach(addon => {
-            const addonBtn = document.createElement('label');
-            addonBtn.className = 'addon-option';
-            addonBtn.setAttribute('data-addon', addon.id);
-            addonBtn.setAttribute('data-product', product.id);
+            MenuData.getAddOns().forEach(addon => {
+                const addonBtn = document.createElement('label');
+                addonBtn.className = 'addon-option';
+                addonBtn.setAttribute('data-addon', addon.id);
+                addonBtn.setAttribute('data-product', product.id);
 
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = addon.id;
-            checkbox.addEventListener('change', (e) => {
-                e.stopPropagation();
-                addonBtn.classList.toggle('selected', checkbox.checked);
-                this.updateItemTotal(product.id);
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = addon.id;
+                checkbox.addEventListener('change', (e) => {
+                    e.stopPropagation();
+                    addonBtn.classList.toggle('selected', checkbox.checked);
+                    this.updateItemTotal(product.id);
+                });
+
+                const checkboxVisual = document.createElement('span');
+                checkboxVisual.className = 'addon-checkbox';
+
+                const details = document.createElement('div');
+                details.className = 'addon-details';
+
+                const addonName = document.createElement('span');
+                addonName.className = 'addon-name';
+                addonName.textContent = addon.name;
+
+                const addonPrice = document.createElement('span');
+                addonPrice.className = 'addon-price';
+                addonPrice.textContent = '+' + MenuData.formatPrice(addon.price);
+
+                details.appendChild(addonName);
+                details.appendChild(addonPrice);
+
+                addonBtn.appendChild(checkbox);
+                addonBtn.appendChild(checkboxVisual);
+                addonBtn.appendChild(details);
+
+                addonsGrid.appendChild(addonBtn);
             });
 
-            const checkboxVisual = document.createElement('span');
-            checkboxVisual.className = 'addon-checkbox';
-
-            const details = document.createElement('div');
-            details.className = 'addon-details';
-
-            const addonName = document.createElement('span');
-            addonName.className = 'addon-name';
-            addonName.textContent = addon.name;
-
-            const addonPrice = document.createElement('span');
-            addonPrice.className = 'addon-price';
-            addonPrice.textContent = '+' + MenuData.formatPrice(addon.price);
-
-            details.appendChild(addonName);
-            details.appendChild(addonPrice);
-
-            addonBtn.appendChild(checkbox);
-            addonBtn.appendChild(checkboxVisual);
-            addonBtn.appendChild(details);
-
-            addonsGrid.appendChild(addonBtn);
-        });
-
-        addonsSection.appendChild(addonsGrid);
-        options.appendChild(addonsSection);
+            addonsSection.appendChild(addonsGrid);
+            options.appendChild(addonsSection);
+        }
 
         // Quantity selector
         const qtySection = document.createElement('div');
@@ -353,7 +356,7 @@ const MenuUI = {
 
         const minusBtn = document.createElement('button');
         minusBtn.className = 'qty-btn';
-        minusBtn.textContent = '−';
+        minusBtn.textContent = '\u2212';
         minusBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             this.adjustQuantity(product.id, -1);
@@ -392,14 +395,14 @@ const MenuUI = {
         const totalPrice = document.createElement('span');
         totalPrice.className = 'item-total-price';
         totalPrice.id = 'total-' + product.id;
-        totalPrice.textContent = MenuData.formatPrice(MenuData.getSizes()[0].basePrice);
+        totalPrice.textContent = MenuData.formatPrice(sizes[0].basePrice);
 
         totalSection.appendChild(totalLabel);
         totalSection.appendChild(totalPrice);
 
         const addBtn = document.createElement('button');
         addBtn.className = 'add-to-cart-btn';
-        addBtn.textContent = '🛒 Add to Cart';
+        addBtn.textContent = '\uD83D\uDED2 Add to Cart';
         addBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             this.addToCart(product.id);
@@ -471,7 +474,7 @@ const MenuUI = {
         const qtyEl = document.getElementById('qty-' + productId);
 
         const selectedSizeBtn = sizeContainer ? sizeContainer.querySelector('.size-option.selected') : null;
-        const sizeId = selectedSizeBtn ? selectedSizeBtn.dataset.size : 'small';
+        const sizeId = selectedSizeBtn ? selectedSizeBtn.dataset.size : null;
 
         const selectedAddons = [];
         if (addonsContainer) {
@@ -511,7 +514,7 @@ const MenuUI = {
         const addBtn = card ? card.querySelector('.add-to-cart-btn') : null;
         if (addBtn) {
             const originalText = addBtn.textContent;
-            addBtn.textContent = '✓ Added!';
+            addBtn.textContent = '\u2713 Added!';
             addBtn.disabled = true;
             setTimeout(() => {
                 addBtn.textContent = originalText;
@@ -520,7 +523,8 @@ const MenuUI = {
         }
 
         // Reset options
-        this.selectSize(productId, 'small');
+        const sizes = MenuData.getProductSizes(product);
+        this.selectSize(productId, sizes[0].id);
         const addonsContainer = document.getElementById('addons-' + productId);
         if (addonsContainer) {
             addonsContainer.querySelectorAll('input').forEach(input => {
@@ -638,7 +642,7 @@ const MenuUI = {
 
             const icon = document.createElement('div');
             icon.className = 'cart-empty-icon';
-            icon.textContent = '🧀';
+            icon.textContent = '\u2728';
 
             const text = document.createElement('p');
             text.textContent = 'Your cart is empty';
@@ -654,6 +658,11 @@ const MenuUI = {
             return;
         }
 
+        const categoryIcons = {
+            'classic': '🧀', 'date-night': '💕', 'girls-night': '🥂',
+            'boards': '🧀', 'treats': '🍰'
+        };
+
         cart.forEach((item, index) => {
             const product = MenuData.getProductById(item.productId);
             const itemEl = document.createElement('div');
@@ -662,11 +671,6 @@ const MenuUI = {
             // Icon
             const iconEl = document.createElement('div');
             iconEl.className = 'cart-item-icon';
-            const categoryIcons = {
-                'classic': '🧀', 'date-night': '💕', 'girls-night': '🥂',
-                'party': '🎉', 'corporate': '💼', 'italian': '🇮🇹',
-                'mediterranean': '🫒', 'brunch': '🥐', 'dessert': '🍫'
-            };
             iconEl.textContent = product ? categoryIcons[product.categories[0]] || '🧀' : '🧀';
 
             // Details
@@ -679,7 +683,7 @@ const MenuUI = {
 
             const size = document.createElement('div');
             size.className = 'cart-item-size';
-            size.textContent = item.sizeName + ' (Serves ' + item.sizeServes + ')';
+            size.textContent = item.sizeName + (item.sizeServes ? ' (Serves ' + item.sizeServes + ')' : '');
 
             details.appendChild(name);
             details.appendChild(size);
@@ -697,7 +701,7 @@ const MenuUI = {
 
             const minusBtn = document.createElement('button');
             minusBtn.className = 'qty-btn';
-            minusBtn.textContent = '−';
+            minusBtn.textContent = '\u2212';
             minusBtn.addEventListener('click', () => {
                 CartManager.updateItemQuantity(index, item.quantity - 1);
             });
@@ -726,7 +730,7 @@ const MenuUI = {
             // Remove button
             const removeBtn = document.createElement('button');
             removeBtn.className = 'cart-item-remove';
-            removeBtn.textContent = '×';
+            removeBtn.textContent = '\u00D7';
             removeBtn.setAttribute('aria-label', 'Remove ' + item.name);
             removeBtn.addEventListener('click', () => {
                 CartManager.removeItem(index);

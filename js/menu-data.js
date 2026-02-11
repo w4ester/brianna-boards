@@ -1,29 +1,25 @@
 /**
- * Brianna Cooks - Menu Data
- * Product catalog with categories, sizes, add-ons, and boards
+ * Nani's Treats & Boards - Menu Data
+ * Product catalog with categories, sizes, add-ons, boards, and treats
  */
 
 // ============================================================
-// CATEGORIES - Occasion & Theme Based
+// CATEGORIES
 // ============================================================
 
 const MENU_CATEGORIES = [
-    { id: 'all', name: 'All Boards', icon: '🧀' },
-    // Occasion-based
+    { id: 'all', name: 'All Items', icon: '✨' },
+    // Boards
+    { id: 'boards', name: 'Boards', icon: '🧀' },
     { id: 'date-night', name: 'Date Night', icon: '💕' },
     { id: 'girls-night', name: 'Girls Night', icon: '🥂' },
-    { id: 'party', name: 'Party Platters', icon: '🎉' },
-    { id: 'corporate', name: 'Corporate', icon: '💼' },
-    // Theme-based
     { id: 'classic', name: 'Classic', icon: '🧀' },
-    { id: 'italian', name: 'Italian', icon: '🇮🇹' },
-    { id: 'mediterranean', name: 'Mediterranean', icon: '🫒' },
-    { id: 'brunch', name: 'Brunch', icon: '🥐' },
-    { id: 'dessert', name: 'Dessert', icon: '🍫' }
+    // Treats
+    { id: 'treats', name: 'Treats', icon: '🍰' }
 ];
 
 // ============================================================
-// BOARD SIZES (replaces colors from LayerBEE)
+// BOARD SIZES (used by charcuterie boards)
 // ============================================================
 
 const BOARD_SIZES = [
@@ -51,64 +47,57 @@ const BOARD_SIZES = [
 ];
 
 // ============================================================
-// ADD-ONS
+// ADD-ONS (for boards only)
 // ============================================================
 
 const ADD_ONS = [
-    // Extra Proteins
+    // Proteins
     { id: 'prosciutto', name: 'Extra Prosciutto', price: 8.00, category: 'protein' },
     { id: 'salami', name: 'Artisan Salami', price: 6.00, category: 'protein' },
-    { id: 'smoked-salmon', name: 'Smoked Salmon', price: 12.00, category: 'protein' },
-    { id: 'capicola', name: 'Capicola', price: 7.00, category: 'protein' },
 
-    // Extra Cheeses
-    { id: 'brie', name: 'Brie Wheel', price: 10.00, category: 'cheese' },
+    // Cheeses
     { id: 'aged-cheddar', name: 'Aged White Cheddar', price: 8.00, category: 'cheese' },
-    { id: 'goat-cheese', name: 'Honey Goat Cheese', price: 7.00, category: 'cheese' },
-    { id: 'blue-cheese', name: 'Gorgonzola', price: 9.00, category: 'cheese' },
 
     // Accompaniments
-    { id: 'honeycomb', name: 'Fresh Honeycomb', price: 9.00, category: 'accompaniment' },
-    { id: 'fig-jam', name: 'Fig Jam', price: 5.00, category: 'accompaniment' },
-    { id: 'marcona-almonds', name: 'Marcona Almonds', price: 6.00, category: 'accompaniment' },
-    { id: 'fresh-fruit', name: 'Seasonal Fruit Upgrade', price: 8.00, category: 'accompaniment' },
+    { id: 'honey', name: 'Honey', price: 5.00, category: 'accompaniment' },
     { id: 'dark-chocolate', name: 'Dark Chocolate Selection', price: 7.00, category: 'accompaniment' }
 ];
 
 // ============================================================
-// PRODUCTS (Charcuterie Boards)
+// PRODUCTS (Boards + Treats)
 // ============================================================
 
 const MENU_PRODUCTS = [
+    // ── BOARDS ────────────────────────────────
+
     {
         id: 'classic-board',
         name: 'The Classic Board',
-        description: 'A timeless selection of aged cheddar, creamy brie, gouda, and manchego paired with prosciutto, salami, mixed olives, and seasonal fruit.',
-        categories: ['classic'],
+        description: 'A timeless selection of cheddar, gouda, and pepperjack paired with prosciutto, salami, mixed olives, and seasonal fruit.',
+        categories: ['boards', 'classic'],
+        type: 'board',
         includes: [
-            '4 premium cheeses',
-            '2 cured meats',
-            'Artisan crackers & bread',
+            'Cheddar, gouda & pepperjack',
+            'Prosciutto & salami',
             'Mixed olives',
-            'Seasonal fruit',
-            'Honey & preserves'
+            'Seasonal fruit'
         ],
         dietary: [],
         imageUrl: 'images/boards/board2.jpeg',
         popular: true
     },
     {
-        id: 'date-night-duo',
-        name: 'Date Night Duo',
-        description: 'An intimate spread designed for two, featuring creamy brie, aged gouda, prosciutto, dark chocolate, fresh strawberries, and champagne crackers.',
-        categories: ['date-night'],
+        id: 'date-night-board',
+        name: 'Date Night Board',
+        description: 'Cheddar, gouda, and pepperjack paired with prosciutto, salami, mixed olives, and seasonal fruit \u2014 beautifully served on a heart-shaped board.',
+        categories: ['boards', 'date-night'],
+        type: 'board',
         includes: [
-            '2 premium cheeses',
-            'Prosciutto',
-            'Dark chocolate',
-            'Fresh strawberries',
-            'Champagne crackers',
-            'Honey drizzle'
+            'Cheddar, gouda & pepperjack',
+            'Prosciutto & salami',
+            'Mixed olives',
+            'Seasonal fruit',
+            'Heart-shaped board'
         ],
         dietary: [],
         imageUrl: 'images/boards/board3.jpeg',
@@ -118,7 +107,8 @@ const MENU_PRODUCTS = [
         id: 'girls-night-grazer',
         name: 'Girls Night Grazer',
         description: 'A beautiful spread perfect for catching up with friends. Features a variety of cheeses, charcuterie, fresh fruit, nuts, and sweet treats.',
-        categories: ['girls-night'],
+        categories: ['boards', 'girls-night'],
+        type: 'board',
         includes: [
             '5 premium cheeses',
             '3 cured meats',
@@ -131,104 +121,78 @@ const MENU_PRODUCTS = [
         imageUrl: 'images/boards/board2.jpeg',
         popular: true
     },
+
+    // ── TREATS ────────────────────────────────
+
     {
-        id: 'party-platter',
-        name: 'Party Platter',
-        description: 'Feed the crowd! A generous spread with something for everyone - multiple cheeses, meats, vegetables, fruits, and dips.',
-        categories: ['party'],
+        id: 'macarons',
+        name: 'Macarons',
+        description: 'Delicate French macarons made fresh to order. Choose from a variety of flavors for your next event or gift.',
+        categories: ['treats'],
+        type: 'treat',
         includes: [
-            '6+ premium cheeses',
-            '4 cured meats',
-            'Vegetable crudités',
-            'Hummus & dips',
-            'Fresh & dried fruits',
-            'Assorted breads & crackers'
+            'Flavors: Salted Caramel, Oreo, Sugar Cookie, Chocolate, Vanilla'
         ],
-        dietary: [],
-        imageUrl: 'images/boards/board1.png',
+        dietary: ['vegetarian'],
+        imageUrl: 'images/treats/cake-pops3.jpg',
+        customSizes: [
+            { id: 'dozen', name: 'Dozen (12)', serves: '6-8', basePrice: 30.00 }
+        ],
+        featured: true
+    },
+    {
+        id: 'cake-pops',
+        name: 'Cake Pops',
+        description: 'Adorable cake pops dipped and decorated to perfection. Available in a variety of flavors.',
+        categories: ['treats'],
+        type: 'treat',
+        includes: [
+            'Flavors: Vanilla, Chocolate, Strawberry'
+        ],
+        dietary: ['vegetarian'],
+        imageUrl: 'images/treats/cake-pops1.jpg',
+        customSizes: [
+            { id: 'half-dozen', name: '1/2 Dozen (6)', serves: '3-6', basePrice: 30.00 },
+            { id: 'dozen', name: 'Dozen (12)', serves: '6-12', basePrice: 40.00 }
+        ],
         popular: true
     },
     {
-        id: 'corporate-classic',
-        name: 'Corporate Classic',
-        description: 'Elegant and professional presentation perfect for meetings, client events, or office celebrations.',
-        categories: ['corporate'],
+        id: 'pretzel-rods',
+        name: 'Pretzel Rods',
+        description: 'Chocolate-dipped pretzel rods decorated for any occasion. A sweet and salty crowd-pleaser.',
+        categories: ['treats'],
+        type: 'treat',
         includes: [
-            '5 premium cheeses',
-            '3 cured meats',
-            'Fresh fruit display',
-            'Assorted nuts',
-            'Artisan crackers',
-            'Professional presentation'
-        ],
-        dietary: [],
-        imageUrl: 'images/boards/board2.jpeg'
-    },
-    {
-        id: 'italian-antipasto',
-        name: 'Italian Antipasto',
-        description: 'Transport your taste buds to Italy with burrata, parmigiano-reggiano, prosciutto di parma, capicola, marinated artichokes, and sun-dried tomatoes.',
-        categories: ['italian'],
-        includes: [
-            'Burrata',
-            'Parmigiano-Reggiano',
-            'Prosciutto di Parma',
-            'Capicola',
-            'Marinated artichokes',
-            'Sun-dried tomatoes',
-            'Fresh basil & olive oil'
-        ],
-        dietary: [],
-        imageUrl: 'images/boards/board1.png'
-    },
-    {
-        id: 'mediterranean-mezze',
-        name: 'Mediterranean Mezze',
-        description: 'A fresh and vibrant spread featuring feta, halloumi, hummus, tzatziki, olives, roasted vegetables, and warm pita.',
-        categories: ['mediterranean'],
-        includes: [
-            'Feta & halloumi',
-            'House-made hummus',
-            'Tzatziki',
-            'Kalamata olives',
-            'Roasted vegetables',
-            'Warm pita bread',
-            'Fresh herbs'
+            'Chocolate-dipped',
+            'Custom decorations available'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/boards/board2.jpeg'
+        imageUrl: 'images/treats/cake-pops4.jpg',
+        customSizes: [
+            { id: 'half-dozen', name: '1/2 Dozen (6)', serves: '3-6', basePrice: 20.00 },
+            { id: 'dozen', name: 'Dozen (12)', serves: '6-12', basePrice: 30.00 }
+        ]
     },
     {
-        id: 'brunch-board',
-        name: 'Brunch Board',
-        description: 'Perfect for morning gatherings! Features cream cheese, smoked salmon, fresh bagels, capers, seasonal berries, and mimosa-ready accompaniments.',
-        categories: ['brunch'],
+        id: 'bento-cake',
+        name: 'Bento Cake',
+        description: 'Adorable mini bento-style cakes, perfect for gifting or personal celebrations. Available in circle and heart shapes.',
+        categories: ['treats'],
+        type: 'treat',
         includes: [
-            'Whipped cream cheese',
-            'Smoked salmon',
-            'Fresh bagels',
-            'Capers & red onion',
-            'Seasonal berries',
-            'Fresh orange juice'
-        ],
-        dietary: [],
-        imageUrl: 'images/boards/board1.png'
-    },
-    {
-        id: 'dessert-dreams',
-        name: 'Dessert Dreams',
-        description: 'End on a sweet note! Dark and milk chocolates, fresh berries, macarons, biscotti, mascarpone, and honey.',
-        categories: ['dessert'],
-        includes: [
-            'Artisan chocolates',
-            'Fresh berries',
-            'French macarons',
-            'Italian biscotti',
-            'Whipped mascarpone',
-            'Honey & caramel drizzle'
+            'Flavors: Vanilla, Chocolate, Strawberry',
+            '5" serves 5-8 | 6" serves 10-12'
         ],
         dietary: ['vegetarian'],
-        imageUrl: 'images/boards/board3.jpeg',
+        imageUrl: 'images/treats/cake-pops2.jpg',
+        customSizes: [
+            { id: '5-circle', name: '5" Circle (2 Layer)', serves: '5-8', basePrice: 40.00 },
+            { id: '5-circle-cupcakes', name: '5" Circle + 2 Cupcakes', serves: '5-8', basePrice: 45.00 },
+            { id: '5-heart', name: '5" Heart (2 Layer)', serves: '5-8', basePrice: 45.00 },
+            { id: '5-heart-cupcakes', name: '5" Heart + 2 Cupcakes', serves: '5-8', basePrice: 50.00 },
+            { id: '6-heart', name: '6" Heart (3 Layer)', serves: '10-12', basePrice: 80.00 }
+        ],
         featured: true
     }
 ];
@@ -240,7 +204,7 @@ const MENU_PRODUCTS = [
 const PAYMENT_CONFIG = {
     zelle: 'brianna@example.com',  // UPDATE with real Zelle email/phone
     instructions: 'Please include your Order ID in the Zelle memo so we can match your payment to your order.',
-    businessName: 'Brianna Cooks'
+    businessName: "Nani's Treats & Boards"
 };
 
 // ============================================================
@@ -294,14 +258,28 @@ const MenuData = {
     },
 
     /**
-     * Calculate total price for a board with size and add-ons
-     * @param {Object} product - Product object
-     * @param {string} sizeId - Size ID
-     * @param {Array} addOnIds - Array of add-on IDs
-     * @returns {number} Total price
+     * Get the sizes available for a product.
+     * Treats use customSizes; boards use global BOARD_SIZES.
+     */
+    getProductSizes(product) {
+        if (product.customSizes) return product.customSizes;
+        return BOARD_SIZES;
+    },
+
+    /**
+     * Whether a product supports add-ons (boards only)
+     */
+    productHasAddOns(product) {
+        return product.type !== 'treat';
+    },
+
+    /**
+     * Calculate total price for a product with size and add-ons
+     * Supports both boards (global sizes) and treats (custom sizes)
      */
     calculatePrice(product, sizeId, addOnIds = []) {
-        const size = this.getSizeById(sizeId);
+        const sizes = this.getProductSizes(product);
+        const size = sizes.find(s => s.id === sizeId);
         if (!size) return 0;
 
         const basePrice = size.basePrice;
@@ -315,16 +293,6 @@ const MenuData = {
 
     formatPrice(price) {
         return '$' + price.toFixed(2);
-    },
-
-    /**
-     * Get product image path (placeholder for now)
-     * @param {Object} product - Product object
-     * @returns {string|null} Image path or null
-     */
-    getProductImagePath(product) {
-        // Will be updated when real images are added
-        return `images/boards/${product.imageFolder}/main.webp`;
     },
 
     getPaymentConfig() {

@@ -1,5 +1,5 @@
 /**
- * Brianna Cooks - Main Application JavaScript
+ * Nani's Treats & Boards - Main Application JavaScript
  * Handles: theme toggle, navigation, cart management, order processing
  */
 
@@ -100,14 +100,18 @@ const CartManager = {
 
     /**
      * Add item to cart with size and optional add-ons
+     * Supports both boards (global sizes) and treats (custom sizes)
      * @param {Object} product - Product object from MenuData
-     * @param {string} sizeId - Size ID ('small', 'medium', 'large')
+     * @param {string} sizeId - Size ID
      * @param {Array} addOnIds - Array of add-on IDs
      * @param {number} quantity - Quantity to add
      */
     addItem(product, sizeId, addOnIds = [], quantity = 1) {
         const cart = this.getCart();
-        const size = window.MenuData ? window.MenuData.getSizeById(sizeId) : null;
+
+        // Look up size from product-specific sizes first, then global
+        const sizes = window.MenuData ? window.MenuData.getProductSizes(product) : [];
+        const size = sizes.find(s => s.id === sizeId);
 
         if (!size) {
             console.error('Invalid size:', sizeId);
@@ -337,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Navigation.init();
     CartManager.updateDisplay();
 
-    console.log('[Brianna Cooks] App initialized!');
+    console.log("[Nani's Treats & Boards] App initialized!");
 });
 
 // ============================================================

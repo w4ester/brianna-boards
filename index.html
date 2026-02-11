@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brianna's Boards - Handcrafted charcuterie boards for every occasion. Perfect for date nights, parties, and corporate events.">
-    <title>Brianna's Boards | Artisan Charcuterie Boards</title>
+    <meta name="description" content="Nani's Treats & Boards - Handcrafted charcuterie boards and delicious treats for every occasion.">
+    <title>Nani's Treats & Boards | Artisan Boards & Sweet Treats</title>
 
     <!-- Fonts - Cormorant Garamond + DM Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +22,8 @@
     <header class="site-header">
         <div class="header-content">
             <a href="index.html" class="logo">
-                <span class="logo-icon">🧀</span>
-                <span>Brianna's Boards</span>
+                <span class="logo-icon">✨</span>
+                <span>Nani's Treats & Boards</span>
             </a>
 
             <nav class="main-nav">
@@ -60,11 +60,11 @@
         <section class="hero">
             <div class="hero-content">
                 <span class="hero-badge">Handcrafted with Love</span>
-                <h1>Beautiful Boards for <span class="highlight">Every Occasion</span></h1>
+                <h1>Treats & Boards for <span class="highlight">Every Occasion</span></h1>
                 <p class="hero-subtitle">
-                    Artfully arranged charcuterie boards featuring premium cheeses,
-                    cured meats, and thoughtfully selected accompaniments.
-                    Perfect for date nights, celebrations, and gatherings.
+                    Handcrafted charcuterie boards and delicious treats
+                    made with love. From artisan boards to macarons, cake pops,
+                    and bento cakes &mdash; perfect for any celebration.
                 </p>
                 <div class="hero-cta">
                     <a href="menu.html" class="btn btn-primary btn-lg">View Menu</a>
@@ -73,7 +73,7 @@
             </div>
             <div class="hero-visual">
                 <img src="images/hero/finished-board-hero.jpeg"
-                     alt="Brianna's signature charcuterie board with salami roses, artisan cheeses, fresh fruits, and honey"
+                     alt="Nani's signature charcuterie board with salami roses, artisan cheeses, fresh fruits, and honey"
                      class="hero-image"
                      loading="lazy">
             </div>
@@ -83,8 +83,8 @@
         <section class="section" style="background: var(--color-bg-alt);">
             <div class="container">
                 <div class="section-header">
-                    <h2>Popular Boards</h2>
-                    <p class="section-subtitle">Our most-loved creations, perfect for any gathering</p>
+                    <h2>Popular Items</h2>
+                    <p class="section-subtitle">Our most-loved boards and treats, perfect for any gathering</p>
                 </div>
 
                 <div class="featured-grid" id="featured-boards">
@@ -101,18 +101,18 @@
         <section class="section">
             <div class="container">
                 <div class="about-preview">
-                    <img src="images/hero/brianna-portrait.jpeg" alt="Brianna" class="about-image-placeholder about-photo">
+                    <img src="images/hero/brianna-portrait.jpeg" alt="Nani" class="about-image-placeholder about-photo">
                     <div class="about-content">
-                        <h2>Meet Brianna</h2>
+                        <h2>Meet Nani</h2>
                         <p>
-                            Every board tells a story. I'm Brianna, and I believe that beautiful food
-                            brings people together. What started as a passion for hosting has grown into
-                            a love for crafting the perfect charcuterie experience.
+                            Every creation tells a story. I'm Brianna &mdash; aka Nani &mdash; and I believe that
+                            beautiful food brings people together. What started as a passion for hosting
+                            has grown into a love for crafting boards and sweet treats for every occasion.
                         </p>
                         <p>
-                            Each board is thoughtfully curated with premium ingredients, seasonal
-                            selections, and an artistic eye. Whether it's an intimate date night or
-                            a grand celebration, I pour my heart into every creation.
+                            From artisan charcuterie boards to macarons, cake pops, and bento cakes,
+                            each creation is made with love and an artistic eye. Whether it's date night
+                            or a grand celebration, I pour my heart into every order.
                         </p>
                         <a href="about.html" class="btn btn-outline">Read My Story</a>
                     </div>
@@ -216,8 +216,8 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <span class="footer-logo">🧀 Brianna's Boards</span>
-                <p class="footer-tagline">Handcrafted charcuterie boards for every occasion</p>
+                <span class="footer-logo">✨ Nani's Treats & Boards</span>
+                <p class="footer-tagline">Handcrafted boards & treats for every occasion</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -231,18 +231,18 @@
             <div class="footer-section">
                 <h4>Contact</h4>
                 <ul class="footer-links">
-                    <li>Email: hello@briannasboards.com</li>
-                    <li>Instagram: @briannasboards</li>
+                    <li>Email: hello@nanistreats.com</li>
+                    <li>Instagram: @nanistreats</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Brianna's Boards. All rights reserved.</p>
+            <p>&copy; 2026 Nani's Treats & Boards. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Feedback Button -->
-    <a href="mailto:howdy@edinfinite.com?subject=Brianna's%20Boards%20Website%20Feedback" class="feedback-btn" title="Send feedback">
+    <a href="mailto:howdy@edinfinite.com?subject=Nani's%20Treats%20Website%20Feedback" class="feedback-btn" title="Send feedback">
         <span class="feedback-icon">💬</span>
         <span class="feedback-text">Feedback</span>
     </a>
@@ -255,18 +255,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('featured-boards');
             const popularProducts = MenuData.getPopularProducts().slice(0, 3);
-            const defaultSize = MenuData.getSizes()[0]; // Small
 
             const categoryIcons = {
+                'boards': '🧀🍇',
                 'classic': '🧀🍇',
                 'date-night': '💕🍫',
                 'girls-night': '🥂✨',
-                'party': '🎉🧀',
-                'corporate': '💼🍷',
-                'italian': '🇮🇹🧀',
-                'mediterranean': '🫒🥙',
-                'brunch': '🥐☕',
-                'dessert': '🍫🍓'
+                'treats': '🍰✨'
             };
 
             popularProducts.forEach(product => {
@@ -317,13 +312,16 @@
                 const footer = document.createElement('div');
                 footer.className = 'board-card-footer';
 
+                const productSizes = MenuData.getProductSizes(product);
+                const firstSize = productSizes[0];
+
                 const price = document.createElement('span');
                 price.className = 'board-card-price';
-                price.textContent = 'From ' + MenuData.formatPrice(defaultSize.basePrice);
+                price.textContent = (productSizes.length > 1 ? 'From ' : '') + MenuData.formatPrice(firstSize.basePrice);
 
                 const serves = document.createElement('span');
                 serves.className = 'board-card-serves';
-                serves.textContent = 'Serves ' + defaultSize.serves + '+';
+                serves.textContent = 'Serves ' + firstSize.serves + '+';
 
                 footer.appendChild(price);
                 footer.appendChild(serves);

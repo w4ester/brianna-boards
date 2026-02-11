@@ -1,5 +1,5 @@
 /**
- * Brianna Cooks - Gallery Page Controller
+ * Nani's Treats & Boards - Gallery Page Controller
  * Handles lightbox functionality for gallery images
  */
 
