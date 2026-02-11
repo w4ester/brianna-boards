@@ -164,6 +164,7 @@ const MENU_PRODUCTS = [
         categories: ['treats'],
         type: 'treat',
         includes: [
+            'Flavors: Strawberry, Vanilla, Chocolate',
             'Chocolate-dipped',
             'Custom decorations available'
         ],
